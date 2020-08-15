@@ -4,12 +4,15 @@ import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import PlantList from "./components/PlantList";
 import ShoppingCart from "./components/ShoppingCart";
 import CheckoutForm from "./components/CheckoutForm";
+import useDarkMode from "./hooks/useDarkMode";
 
 import "./App.css";
 
 function App() {
   // array of plants that have been added to the cart
   const [cart, setCart] = useState([]);
+  const [darkMode, setDarkMode] = useDarkMode(false);
+
 
   // add a plant to the cart
   const addToCart = (plant) => {
@@ -20,12 +23,18 @@ function App() {
   const removeFromCart = (plant) => {
     setCart(cart.filter((p) => p.id !== plant.id));
   };
+  // DARK MODE 
+  const toggleMode = (e) => {
+   e.preventDefault();
+   setDarkMode(!darkMode);
+ }
 
   return (
-    <div>
+     //ADDS/REMOVES LIGHT COLOR CLASS
+    <div className={ darkMode ? "dark-mode" : ""} >
       <Router>
         <nav className="container">
-          <h1>
+          <h1 className={ darkMode ? "dark-mode" : ""}>
             React Plants <span role="img">🌿</span>
           </h1>
           <ul className="steps">
@@ -42,17 +51,23 @@ function App() {
                 </span>
               </NavLink>
             </li>
+            <div className="dark-mode__toggle">
+               <div
+               onClick={toggleMode}
+               className={darkMode ? 'toggle toggled' : 'toggle'}
+               />
+            </div>
           </ul>
         </nav>
         <Route
           exact
           path="/"
-          render={() => <PlantList addToCart={addToCart} />}
+          render={() => <PlantList addToCart={addToCart} darkMode={darkMode} />}
         />
         <Route
           path="/cart"
           render={(props) => (
-            <ShoppingCart
+            <ShoppingCart darkMode={darkMode}
               {...props}
               cart={cart}
               removeFromCart={removeFromCart}

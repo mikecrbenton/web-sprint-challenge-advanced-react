@@ -9,8 +9,8 @@ export default function ShoppingCart(props) {
       {props.cart.map((plant) => (
         <div className="plant-card" key={plant.id}>
           <img className="plant-image" src={plant.img} alt={plant.name} />
-          <div className="plant-details">
-            <h2 className="plant-name">{plant.name}</h2>
+          <div className={ props.darkMode ? "dark-mode plant-details" : "plant-details"}>
+            <h2 className={ props.darkMode ? "dark-mode plant-name" : "plant-name"}>{plant.name}</h2>
             <p>${plant.price}</p>
             <button
               className="plant-button"
