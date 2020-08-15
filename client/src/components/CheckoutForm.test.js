@@ -21,4 +21,15 @@ test("form shows success message on submit with form details", () => {
    const state = getByTestId(/^state$/i);
    const zip = getByTestId(/^zip$/i);
    const submitButton = getByText(/^Checkout$/i);
+
+   fireEvent.change( firstName, { target: { value: "Michael" } });
+   fireEvent.change( lastName, { target: { value: "Benton" } });
+   fireEvent.change( address, { target: { value: "1111 Plymouth" } });
+   fireEvent.change( city, { target: { value: "Springfield" } });
+   fireEvent.change( state, { target: { value: "NJ" } });
+   fireEvent.change( zip, { target: { value: "88808" } });
+   
+   submitButton.click();
+
+   expect( getByTestId(/^successMessage$/i) ).toBeVisible();
 });
