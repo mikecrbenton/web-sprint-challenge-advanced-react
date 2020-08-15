@@ -29,8 +29,14 @@ Commit your code regularly and meaningfully. This helps both you (in case you ev
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. Explain how to build stateful class components.
+      Class components are built out differently than functional, in that they require a class name declaration,
+      a constructor() and a render method.  Any "variables" in the class whether primitive or objects/arrays need
+      to be declared inside of state in the constructor.  However, any functions are declared within the class itself.  Class components also come with built in methods/functionality like setState() which is extended
+      from React.Component on declaration
+
 
 2. Describe the different phases of the component lifecycle.
+      A component will begin -> lifecycle -> end.  In a class component, component DidMount, DidUpdate and WillUnmount represent this in functionality
 
 3. Demonstrate an understanding of class component lifecycle methods.
 
