@@ -39,10 +39,22 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
       A component will begin -> lifecycle -> end.  In a class component, component DidMount, DidUpdate and WillUnmount represent this in functionality
 
 3. Demonstrate an understanding of class component lifecycle methods.
+      Birth/Mounting phase -> everything is being built in the app.  componentDidMount() is important
+      in a class component because this block insures that any axios or fetch() don't happen to soon
+      Growth/Updating phase ->  Although this method isn't always needed, it  always takes 2 args - previous props and previous state in case they are needed for changes to DOM, like stopping a render in
+      a component
+      Death/Unmounting phase -> componentDidUnmount can be used for clean up  
 
 4. Define stateful logic.
+      These are often helper functions, or custom functions with components that deal with state.
+      Anything that sets or changes logic could be defined in this way.  This would also extend
+      to custom hooks, where built in functionality is being augmented by user defined logic.
 
 5. Describe how to test a React component with React Testing Library.
+      React testing libray gives a set of tools to query elements from the DOM.  These are
+      then run against assertions ( in this case from the Jest framework ). The 3 bullet 
+      points are Arrange - Act - Assert.  react-testing-library helps in the arrange stage
+      by retrieving ( or not retrieving )  what is needed from the DOM.
 
 You are expected to be able to answer questions in these areas. Your responses contribute to your Sprint Challenge grade.
 
