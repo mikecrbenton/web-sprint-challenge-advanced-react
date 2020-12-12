@@ -1,5 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
+import userEvent from '@testing-library/user-event'
 import CheckoutForm from "./CheckoutForm";
 
 // Write up the two tests here and make sure they are testing what the title shows
@@ -22,14 +23,14 @@ test("form shows success message on submit with form details", () => {
    const zip = getByTestId(/^zip$/i);
    const submitButton = getByText(/^Checkout$/i);
 
-   fireEvent.change( firstName, { target: { value: "Michael" } });
-   fireEvent.change( lastName, { target: { value: "Benton" } });
-   fireEvent.change( address, { target: { value: "1111 Plymouth" } });
-   fireEvent.change( city, { target: { value: "Springfield" } });
-   fireEvent.change( state, { target: { value: "NJ" } });
-   fireEvent.change( zip, { target: { value: "88808" } });
+   userEvent.type( firstName, "Michael" );
+   userEvent.type( lastName, "Benton" );
+   userEvent.type( address, "1111 Plymouth" );
+   userEvent.type( city, "Springfield" );
+   userEvent.type( state, "NJ" );
+   userEvent.type( zip, "88808" );
    
-   submitButton.click();
+   userEvent.click(submitButton);
 
    expect( getByTestId(/^successMessage$/i) ).toBeVisible();
 });

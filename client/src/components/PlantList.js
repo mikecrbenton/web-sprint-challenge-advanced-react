@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PlantFilter from './PlantFilter'
 import axios from "axios";
 
 export default class PlantList extends Component {
@@ -21,9 +22,18 @@ export default class PlantList extends Component {
       .catch( (err) => {console.log(err)});
   }
 
+   // FILTER PLANT  
+   filterPlant = (filterText) => {
+      this.setState({
+      plants : this.state.plants.filter( (item) => { return item.name === filterText })
+      });
+   }
+
   /*********  DON'T CHANGE ANYTHING IN THE RENDER FUNCTION *********/
   render() {
     return (
+      <>
+      <PlantFilter filterPlant={this.filterPlant} setPlantState={this.setState} plantState={this.state} />
       <main className="plant-list">
         {this.state?.plants?.map((plant) => (
           <div className="plant-card"key={plant.id}>
@@ -47,6 +57,7 @@ export default class PlantList extends Component {
           </div>
         ))}
       </main>
+      </>
     );
   }
 }
