@@ -25,6 +25,7 @@ const PlantFilter = (props) => {
    axios.get('http://localhost:3333/plants')
       .then( (res) => {
             props.setPlantState( /* why does props.plantState.plants work in console.log but not in setter */)
+            // props.setPlantState( { props.plantState.plants : [...res.data.plantsData]})
       })
       .catch( (err) => {console.log(err)});
   }
